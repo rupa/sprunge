@@ -43,6 +43,9 @@ EXAMPLES
        %s/NfIC
     ~$ firefox %s/NfIC?sh
 
+SEE ALSO
+    http://github.com/rupa/sprunge
+
 </pre>""" % (r, u, r, u, u, u)
 
     def new_id(self):
