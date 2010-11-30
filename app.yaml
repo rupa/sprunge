@@ -1,0 +1,14 @@
+application: sprunge
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /favicon.ico
+  static_files: static/favicon.ico
+  upload: static/favicon.ico
+- url: /glipper-sprunge.txt
+  static_files: static/glipper-sprunge.txt
+  upload: static/glipper-sprunge.txt
+- url: /.*
+  script: sprunge.py

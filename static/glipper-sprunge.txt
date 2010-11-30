@@ -1,0 +1,37 @@
+# glipper plugin for sprunge.us
+# put me at /usr/share/glipper/plugins/sprunge.py
+
+import httplib, gtk, urllib, webbrowser, threading
+import glipper
+
+from gettext import gettext as _
+
+def info():
+    info = {"Name": _("sprunge"), 
+            "Description": _("Paste your clipboard to sprunge.us"),
+            "Preferences": False}
+    return info
+
+class Sprunge(threading.Thread):
+    def __init__(self, text):
+        threading.Thread.__init__(self)
+        self.text = text
+
+    def run(self):
+        conn = httplib.HTTPConnection("sprunge.us")
+        params = urllib.urlencode({"sprunge": self.text})
+        headers = {"Content-type": "application/x-www-form-urlencoded",
+                   "Accept": "text/plain"}
+        conn.request("POST", "", params, headers)
+        url = conn.getresponse().read()
+        conn.close()
+        webbrowser.open(url)
+
+def activated(menu):
+    sp = Sprunge(glipper.get_history_item(0))
+    sp.start()
+
+def init():
+    item = gtk.MenuItem(_("sprunge"))
+    item.connect('activate', activated)
+    glipper.add_menu_item(item)
