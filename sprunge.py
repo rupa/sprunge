@@ -111,6 +111,12 @@ SEE ALSO
             s = Sprunge()
             s.content = self.request.get(self.r)
             s.name = nid
+
+            # delete the next-to-oldest sprunge
+            old = Sprunge.gql('ORDER BY date ASC LIMIT 1 OFFSET 1').get()
+            if old:
+                old.delete()
+
             s.put()
             self.response.out.write(' ' + self.u + '/' + nid + '\n')
 
