@@ -40,8 +40,8 @@ DESCRIPTION
 
 EXAMPLES
     ~$ cat bin/ching | curl -F '%s=&lt;-' %s
-       %s/NfIC
-    ~$ firefox %s/NfIC?sh
+       %s/VZiY
+    ~$ firefox %s/VZiY?py#n-7
 
 SEE ALSO
     http://github.com/rupa/sprunge
