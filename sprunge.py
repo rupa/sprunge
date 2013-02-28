@@ -123,17 +123,22 @@ SEE ALSO
             s.content = self.request.get(self.r)
             s.name = nid
 
-            # clear out same amount of space we're using up
-            cleared = len(s.content)
-            while cleared > 0:
+            try:
+                s.put()
+            except Exception as ex:
+                self.response.out.write('{0}\n'.format(ex))
+                return
+
+            # clear out the same amount of space we've used up
+            to_clear = len(s.content)
+            while to_clear > 0:
                 old = Sprunge.gql('ORDER BY date ASC LIMIT 1').get()
                 if not old:
                     break
-                cleared -= len(old.content)
+                to_clear -= len(old.content)
                 old.delete()
 
-            s.put()
-            self.response.out.write(' ' + self.u + '/' + nid + '\n')
+            self.response.out.write('{0}/{1}\n'.format(self.u, nid))
 
 def main():
     application = webapp.WSGIApplication([(r'/(.*)', Index)],debug=False)
