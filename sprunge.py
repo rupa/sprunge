@@ -123,9 +123,13 @@ SEE ALSO
             s.content = self.request.get(self.r)
             s.name = nid
 
-            # delete the oldest sprunge
-            old = Sprunge.gql('ORDER BY date ASC LIMIT 1').get()
-            if old:
+            # clear out same amount of space we're using up
+            cleared = len(s.content)
+            while cleared > 0:
+                old = Sprunge.gql('ORDER BY date ASC LIMIT 1').get()
+                if not old:
+                    break
+                cleared -= len(old.content)
                 old.delete()
 
             s.put()
