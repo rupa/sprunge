@@ -135,12 +135,14 @@ SEE ALSO
 
             # clear out the same amount of space we've used up
             to_clear = len(s.content)
-            while to_clear > 0:
+            max_to_delete = 2
+            while to_clear > 0 and max_to_delete > 0:
                 old = Sprunge.gql('ORDER BY date ASC LIMIT 1').get()
                 if not old:
                     break
                 to_clear -= len(old.content)
                 old.delete()
+                max_to_delete -= 1
 
             self.response.out.write('{0}/{1}\n'.format(self.u, nid))
 
