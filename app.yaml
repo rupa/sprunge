@@ -1,4 +1,4 @@
-application: sprunge
+application: sprunge-hrd
 version: 1
 runtime: python27
 api_version: 1
@@ -16,3 +16,6 @@ handlers:
   upload: static/glipper-sprunge.txt
 - url: /.*
   script: sprunge.py
+
+builtins:
+  - remote_api: on
