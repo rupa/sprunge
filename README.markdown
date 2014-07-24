@@ -9,7 +9,7 @@ Version 2:
 
 * Pretty much a complete rewrite, should be transparent to users.
 * Sprunge contents are stored in the Blobstore (actually the Cloud Storage
-  "default bucket" rather than the Datastore. This gives us more room.
+  "default bucket") rather than the Datastore. This gives us more room.
 * Existing sprunges are migrated on demand.
 
 Version 1:
