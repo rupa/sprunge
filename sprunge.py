@@ -25,7 +25,7 @@ def new_id():
 
 def help():
     form = (
-        'data:text/html,<form action="{0}" method="POST">'
+        'data:text/html,<form action="{0}" method="POST" accept-charset="UTF-8">'
         '<textarea name="{1}" cols="80" rows="24"></textarea>'
         '<br><button type="submit">{1}</button></form>'.format(URL, POST)
     )
