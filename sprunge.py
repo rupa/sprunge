@@ -52,7 +52,7 @@ EXAMPLES
 SEE ALSO
     http://github.com/rupa/sprunge
 
-</pre>""".format(POST, URL, form, '<a href="http://pygments.org/docs/lexers/"')
+</pre>""".format(POST, URL, form, 'http://pygments.org/docs/lexers/')
 
 def make_blob(nid, data):
     filename = '/{0}/{1}'.format(get_default_gcs_bucket_name(), nid)
